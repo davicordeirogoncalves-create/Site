@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -24,13 +24,27 @@
       --roxo: #7c3aed;
       --rosa: #ec4899;
       --laranja: #f97316;
-      --amarelo: #facc15;
       --verde: #10b981;
       --fundo: #f5f7fb;
       --texto: #172033;
       --cinza: #64748b;
       --branco: #ffffff;
       --borda: #e5e7eb;
+      --card: #ffffff;
+      --header-texto: #ffffff;
+    }
+
+    body.dark {
+      --fundo: #0f172a;
+      --texto: #f8fafc;
+      --cinza: #94a3b8;
+      --branco: #1e293b;
+      --borda: #334155;
+      --card: #1e293b;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -38,9 +52,11 @@
       background: var(--fundo);
       color: var(--texto);
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
 
     /* HEADER */
+
     header {
       background: linear-gradient(
         120deg,
@@ -58,11 +74,11 @@
     .topo {
       max-width: 1200px;
       margin: auto;
-      padding: 18px 20px;
+      padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      gap: 20px;
     }
 
     .logo {
@@ -77,7 +93,7 @@
 
     nav {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -85,30 +101,49 @@
     nav a {
       color: white;
       text-decoration: none;
-      padding: 8px 13px;
+      padding: 8px 12px;
       border-radius: 20px;
       font-size: 14px;
       font-weight: bold;
       transition: 0.3s;
     }
 
-    nav a:hover {
-      background: rgba(255,255,255,0.2);
+    nav a:hover,
+    nav a.ativo {
+      background: rgba(255,255,255,0.22);
+    }
+
+    .acoes-header {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .botao-header,
+    .botao-menu {
+      border: none;
+      cursor: pointer;
+      min-width: 42px;
+      min-height: 42px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.18);
+      color: white;
+      font-size: 19px;
+      transition: 0.3s;
+    }
+
+    .botao-header:hover,
+    .botao-menu:hover {
+      background: rgba(255,255,255,0.3);
       transform: translateY(-2px);
     }
 
     .botao-menu {
       display: none;
-      border: none;
-      background: white;
-      color: var(--azul);
-      font-size: 22px;
-      border-radius: 8px;
-      padding: 7px 11px;
-      cursor: pointer;
     }
 
     /* TICKER */
+
     .ticker {
       background: #111827;
       color: white;
@@ -131,10 +166,87 @@
       font-weight: bold;
     }
 
+    /* BARRA DE BUSCA */
+
+    .busca-area {
+      max-width: 1200px;
+      margin: 25px auto 0;
+      padding: 0 20px;
+    }
+
+    .busca {
+      background: var(--card);
+      border: 1px solid var(--borda);
+      border-radius: 16px;
+      padding: 10px;
+      display: flex;
+      gap: 10px;
+      box-shadow: 0 8px 25px rgba(15,23,42,0.07);
+    }
+
+    .busca input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--texto);
+      font-size: 16px;
+      padding: 8px 10px;
+    }
+
+    .busca button {
+      border: none;
+      background: var(--azul);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* FILTROS */
+
+    .filtros {
+      max-width: 1200px;
+      margin: 18px auto 0;
+      padding: 0 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filtro {
+      border: 1px solid var(--borda);
+      background: var(--card);
+      color: var(--texto);
+      padding: 9px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.25s;
+    }
+
+    .filtro:hover,
+    .filtro.ativo {
+      background: var(--azul);
+      color: white;
+      border-color: var(--azul);
+    }
+
+    .resultado {
+      max-width: 1200px;
+      margin: 12px auto;
+      padding: 0 20px;
+      color: var(--cinza);
+      font-size: 14px;
+    }
+
     /* HERO */
+
     .hero {
       max-width: 1200px;
-      margin: 30px auto;
+      margin: 25px auto 30px;
       padding: 0 20px;
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -150,7 +262,7 @@
       background-image:
         linear-gradient(
           to top,
-          rgba(0,0,0,0.85),
+          rgba(0,0,0,0.9),
           rgba(0,0,0,0.05)
         ),
         url("https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1200&q=80");
@@ -159,6 +271,7 @@
       display: flex;
       align-items: flex-end;
       padding: 35px;
+      cursor: pointer;
       transition: 0.3s;
     }
 
@@ -193,16 +306,22 @@
       gap: 22px;
     }
 
-    .mini-card {
-      background: white;
-      border-radius: 20px;
+    .mini-card,
+    .card {
+      background: var(--card);
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 8px 25px rgba(15,23,42,0.07);
       transition: 0.3s;
     }
 
-    .mini-card:hover {
-      transform: translateY(-4px);
+    .mini-card:hover,
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .mini-card {
+      cursor: pointer;
     }
 
     .mini-card img {
@@ -220,13 +339,8 @@
       line-height: 1.25;
     }
 
-    .data {
-      color: var(--cinza);
-      font-size: 12px;
-      margin-top: 8px;
-    }
-
     /* CONTEÚDO */
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -237,7 +351,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 30px 0 18px;
+      margin: 35px 0 18px;
     }
 
     .titulo-secao h2 {
@@ -258,14 +372,8 @@
       vertical-align: -4px;
     }
 
-    .ver-todas {
-      color: var(--azul);
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
     /* CARDS */
+
     .grid-noticias {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -273,16 +381,7 @@
     }
 
     .card {
-      background: white;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 7px 22px rgba(15,23,42,0.07);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(15,23,42,0.12);
+      position: relative;
     }
 
     .card img {
@@ -298,23 +397,10 @@
     .tag {
       font-size: 11px;
       font-weight: bold;
-      color: var(--azul);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
-    .card h3 {
-      font-size: 20px;
-      line-height: 1.25;
-      margin: 7px 0;
-    }
-
-    .card p {
-      color: var(--cinza);
-      font-size: 14px;
-    }
-
-    /* CORES DAS CATEGORIAS */
     .mundo {
       color: #2563eb;
     }
@@ -335,7 +421,51 @@
       color: #db2777;
     }
 
-    /* DESTAQUES */
+    .card h3 {
+      font-size: 20px;
+      line-height: 1.25;
+      margin: 7px 0;
+    }
+
+    .card p {
+      color: var(--cinza);
+      font-size: 14px;
+    }
+
+    .data {
+      color: var(--cinza);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .favorito {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      cursor: pointer;
+      font-size: 19px;
+      transition: 0.2s;
+    }
+
+    .favorito:hover {
+      transform: scale(1.1);
+    }
+
+    .favorito.ativo {
+      color: #e11d48;
+    }
+
+    .card.oculto {
+      display: none;
+    }
+
+    /* PAINÉIS */
+
     .destaques {
       display: grid;
       grid-template-columns: 1.5fr 1fr;
@@ -344,7 +474,7 @@
     }
 
     .painel {
-      background: white;
+      background: var(--card);
       border-radius: 20px;
       padding: 25px;
       box-shadow: 0 7px 22px rgba(15,23,42,0.07);
@@ -361,6 +491,7 @@
       gap: 14px;
       padding: 13px 0;
       border-bottom: 1px solid var(--borda);
+      cursor: pointer;
     }
 
     .ranking-item:last-child {
@@ -389,6 +520,7 @@
     }
 
     /* NEWSLETTER */
+
     .newsletter {
       margin-top: 40px;
       border-radius: 25px;
@@ -434,15 +566,16 @@
       color: #422006;
       font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
     }
 
-    .formulario button:hover {
-      background: #fde047;
-      transform: scale(1.03);
+    .mensagem-newsletter {
+      margin-top: 12px;
+      font-weight: bold;
+      min-height: 24px;
     }
 
     /* FOOTER */
+
     footer {
       background: #111827;
       color: #cbd5e1;
@@ -492,7 +625,95 @@
       font-size: 13px;
     }
 
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 2000;
+    }
+
+    .modal.ativo {
+      display: flex;
+    }
+
+    .modal-conteudo {
+      width: min(700px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--card);
+      color: var(--texto);
+      border-radius: 22px;
+      padding: 30px;
+      position: relative;
+      animation: aparecer 0.25s ease;
+    }
+
+    .modal-conteudo h2 {
+      margin: 12px 0;
+      line-height: 1.2;
+    }
+
+    .modal-conteudo p {
+      color: var(--cinza);
+    }
+
+    .fechar-modal {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      border: none;
+      background: var(--fundo);
+      color: var(--texto);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* BOTÃO TOPO */
+
+    #topo {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: var(--azul);
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      z-index: 1500;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.3);
+    }
+
+    #topo.mostrar {
+      display: block;
+    }
+
     /* RESPONSIVO */
+
     @media (max-width: 900px) {
       .hero,
       .destaques {
@@ -506,13 +727,13 @@
       .footer-container {
         grid-template-columns: 1fr 1fr;
       }
-    }
 
-    @media (max-width: 650px) {
       .topo {
         flex-wrap: wrap;
       }
+    }
 
+    @media (max-width: 650px) {
       .botao-menu {
         display: block;
       }
@@ -550,8 +771,16 @@
 
       .titulo-secao {
         align-items: flex-start;
-        gap: 10px;
         flex-direction: column;
+        gap: 10px;
+      }
+
+      .busca {
+        flex-direction: column;
+      }
+
+      .busca button {
+        width: 100%;
       }
     }
   </style>
@@ -559,8 +788,8 @@
 
 <body>
 
-  <!-- CABEÇALHO -->
   <header>
+
     <div class="topo">
 
       <div class="logo">
@@ -569,39 +798,137 @@
 
       <button
         class="botao-menu"
-        onclick="abrirMenu()"
+        id="botaoMenu"
+        type="button"
         aria-label="Abrir menu"
+        aria-expanded="false"
       >
         ☰
       </button>
 
       <nav id="menu">
+
         <a href="#inicio">Início</a>
         <a href="#mundo">Mundo</a>
         <a href="#tecnologia">Tecnologia</a>
         <a href="#ciencia">Ciência</a>
         <a href="#esportes">Esportes</a>
         <a href="#entretenimento">Entretenimento</a>
+
       </nav>
+
+      <div class="acoes-header">
+
+        <button
+          class="botao-header"
+          id="modoEscuro"
+          type="button"
+          aria-label="Ativar modo escuro"
+          title="Modo escuro"
+        >
+          🌙
+        </button>
+
+      </div>
 
     </div>
 
     <div class="ticker">
+
       <div class="ticker-conteudo">
+
         <span class="ao-vivo">ATUALIDADES</span>
-        Informação, notícias e acontecimentos que movimentam o mundo.
+
+        <span id="tickerTexto">
+          Informação, notícias e acontecimentos que movimentam o mundo.
+        </span>
+
       </div>
+
     </div>
+
   </header>
 
-  <!-- DESTAQUE PRINCIPAL -->
+
   <main id="inicio">
+
+    <!-- BUSCA -->
+
+    <section class="busca-area">
+
+      <form class="busca" id="formBusca">
+
+        <input
+          type="search"
+          id="campoBusca"
+          placeholder="🔎 Buscar notícias..."
+          autocomplete="off"
+        >
+
+        <button type="submit">
+          Buscar
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- FILTROS -->
+
+    <div class="filtros">
+
+      <button class="filtro ativo" data-filtro="todos" type="button">
+        Todas
+      </button>
+
+      <button class="filtro" data-filtro="mundo" type="button">
+        🌎 Mundo
+      </button>
+
+      <button class="filtro" data-filtro="tecnologia" type="button">
+        💻 Tecnologia
+      </button>
+
+      <button class="filtro" data-filtro="ciencia" type="button">
+        🔬 Ciência
+      </button>
+
+      <button class="filtro" data-filtro="esportes" type="button">
+        🏆 Esportes
+      </button>
+
+      <button class="filtro" data-filtro="entretenimento" type="button">
+        🎬 Entretenimento
+      </button>
+
+      <button class="filtro" data-filtro="favoritos" type="button">
+        ❤️ Favoritos
+      </button>
+
+    </div>
+
+    <div class="resultado" id="resultado">
+      Mostrando todas as notícias.
+    </div>
+
+
+    <!-- HERO -->
 
     <section class="hero">
 
-      <article class="noticia-principal">
+      <article
+        class="noticia-principal"
+        data-titulo="O mundo em transformação"
+        data-categoria="mundo"
+        data-modal="true"
+      >
+
         <div>
-          <span class="categoria">Mundo</span>
+
+          <span class="categoria">
+            Mundo
+          </span>
 
           <h1>
             O mundo em transformação: os principais acontecimentos da atualidade
@@ -615,19 +942,29 @@
           <div class="data">
             Atualizado hoje • 10 min de leitura
           </div>
+
         </div>
+
       </article>
+
 
       <div class="mini-noticias">
 
-        <article class="mini-card">
+        <article
+          class="mini-card"
+          data-modal="true"
+        >
+
           <img
             src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80"
             alt="Tecnologia"
           >
 
           <div class="mini-card-content">
-            <span class="tag tecnologia">Tecnologia</span>
+
+            <span class="tag tecnologia">
+              Tecnologia
+            </span>
 
             <h3>
               Novas tecnologias estão mudando a maneira como vivemos
@@ -636,17 +973,27 @@
             <div class="data">
               Hoje • 5 min
             </div>
+
           </div>
+
         </article>
 
-        <article class="mini-card">
+
+        <article
+          class="mini-card"
+          data-modal="true"
+        >
+
           <img
             src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=700&q=80"
             alt="Ciência"
           >
 
           <div class="mini-card-content">
-            <span class="tag ciencia">Ciência</span>
+
+            <span class="tag ciencia">
+              Ciência
+            </span>
 
             <h3>
               Descobertas científicas despertam atenção internacional
@@ -655,33 +1002,53 @@
             <div class="data">
               Hoje • 4 min
             </div>
+
           </div>
+
         </article>
 
       </div>
 
     </section>
 
-    <!-- NOTÍCIAS -->
+
     <div class="container">
+
+
+      <!-- MUNDO -->
 
       <section id="mundo">
 
         <div class="titulo-secao">
           <h2>🌎 Mundo</h2>
-          <a class="ver-todas" href="#">Ver todas →</a>
         </div>
 
         <div class="grid-noticias">
 
-          <article class="card">
+          <article
+            class="card noticia"
+            data-categoria="mundo"
+            data-titulo="Países discutem novos caminhos para cooperação internacional"
+          >
+
+            <button
+              class="favorito"
+              type="button"
+              aria-label="Adicionar aos favoritos"
+            >
+              ♡
+            </button>
+
             <img
               src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=800&q=80"
               alt="Cidade"
             >
 
             <div class="card-content">
-              <span class="tag mundo">Internacional</span>
+
+              <span class="tag mundo">
+                Internacional
+              </span>
 
               <h3>
                 Países discutem novos caminhos para cooperação internacional
@@ -692,18 +1059,39 @@
                 para os próximos anos.
               </p>
 
-              <div class="data">Hoje • 6 min de leitura</div>
+              <div class="data">
+                Hoje • 6 min de leitura
+              </div>
+
             </div>
+
           </article>
 
-          <article class="card">
+
+          <article
+            class="card noticia"
+            data-categoria="mundo"
+            data-titulo="Os assuntos que estão dominando o noticiário mundial"
+          >
+
+            <button
+              class="favorito"
+              type="button"
+              aria-label="Adicionar aos favoritos"
+            >
+              ♡
+            </button>
+
             <img
               src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=800&q=80"
               alt="Jornal e notícias"
             >
 
             <div class="card-content">
-              <span class="tag mundo">Atualidades</span>
+
+              <span class="tag mundo">
+                Atualidades
+              </span>
 
               <h3>
                 Os assuntos que estão dominando o noticiário mundial
@@ -714,377 +1102,14 @@
                 imprensa internacional.
               </p>
 
-              <div class="data">Hoje • 7 min de leitura</div>
+              <div class="data">
+                Hoje • 7 min de leitura
+              </div>
+
             </div>
+
           </article>
 
-          <article class="card">
-            <img
-              src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=800&q=80"
-              alt="Paisagem urbana"
-            >
 
-            <div class="card-content">
-              <span class="tag mundo">Economia</span>
-
-              <h3>
-                Mercados acompanham mudanças na economia global
-              </h3>
-
-              <p>
-                Indicadores econômicos e decisões internacionais influenciam
-                expectativas para os próximos meses.
-              </p>
-
-              <div class="data">Hoje • 5 min de leitura</div>
-            </div>
-          </article>
-
-        </div>
-
-      </section>
-
-      <!-- TECNOLOGIA -->
-      <section id="tecnologia">
-
-        <div class="titulo-secao">
-          <h2>💻 Tecnologia</h2>
-          <a class="ver-todas" href="#">Ver todas →</a>
-        </div>
-
-        <div class="grid-noticias">
-
-          <article class="card">
-            <img
-              src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
-              alt="Inteligência artificial"
-            >
-
-            <div class="card-content">
-              <span class="tag tecnologia">IA</span>
-
-              <h3>
-                Inteligência artificial ganha espaço em diferentes setores
-              </h3>
-
-              <p>
-                Ferramentas de inteligência artificial continuam ampliando
-                suas aplicações no cotidiano.
-              </p>
-
-              <div class="data">Hoje • 8 min</div>
-            </div>
-          </article>
-
-          <article class="card">
-            <img
-              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
-              alt="Computadores"
-            >
-
-            <div class="card-content">
-              <span class="tag tecnologia">Inovação</span>
-
-              <h3>
-                Empresas apresentam novas soluções digitais
-              </h3>
-
-              <p>
-                Novos produtos e serviços buscam tornar tarefas cada vez
-                mais rápidas e conectadas.
-              </p>
-
-              <div class="data">Hoje • 5 min</div>
-            </div>
-          </article>
-
-          <article class="card">
-            <img
-              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
-              alt="Tecnologia espacial"
-            >
-
-            <div class="card-content">
-              <span class="tag tecnologia">Futuro</span>
-
-              <h3>
-                A tecnologia que pode transformar o futuro
-              </h3>
-
-              <p>
-                Pesquisadores e empresas trabalham em novas possibilidades
-                para os próximos anos.
-              </p>
-
-              <div class="data">Ontem • 6 min</div>
-            </div>
-          </article>
-
-        </div>
-
-      </section>
-
-      <!-- CIÊNCIA -->
-      <section id="ciencia">
-
-        <div class="titulo-secao">
-          <h2>🔬 Ciência</h2>
-          <a class="ver-todas" href="#">Ver todas →</a>
-        </div>
-
-        <div class="grid-noticias">
-
-          <article class="card">
-            <img
-              src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=800&q=80"
-              alt="Laboratório"
-            >
-
-            <div class="card-content">
-              <span class="tag ciencia">Pesquisa</span>
-
-              <h3>
-                Pesquisadores avançam em novas áreas de estudo
-              </h3>
-
-              <p>
-                Estudos recentes ajudam a ampliar o conhecimento sobre
-                diferentes fenômenos.
-              </p>
-
-              <div class="data">Hoje • 4 min</div>
-            </div>
-          </article>
-
-          <article class="card">
-            <img
-              src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80"
-              alt="Espaço"
-            >
-
-            <div class="card-content">
-              <span class="tag ciencia">Espaço</span>
-
-              <h3>
-                Novas missões ampliam o conhecimento sobre o espaço
-              </h3>
-
-              <p>
-                Observações e missões espaciais continuam trazendo novos
-                dados para a comunidade científica.
-              </p>
-
-              <div class="data">Ontem • 6 min</div>
-            </div>
-          </article>
-
-          <article class="card">
-            <img
-              src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=800&q=80"
-              alt="Pesquisa científica"
-            >
-
-            <div class="card-content">
-              <span class="tag ciencia">Descobertas</span>
-
-              <h3>
-                Ciência busca respostas para grandes desafios
-              </h3>
-
-              <p>
-                Projetos científicos exploram novas possibilidades em
-                diferentes áreas do conhecimento.
-              </p>
-
-              <div class="data">Ontem • 5 min</div>
-            </div>
-          </article>
-
-        </div>
-
-      </section>
-
-      <!-- DESTAQUES -->
-      <section class="destaques">
-
-        <div class="painel">
-
-          <h3>🔥 Mais lidas</h3>
-
-          <div class="ranking-item">
-            <span class="numero">1</span>
-            <p>
-              Os principais acontecimentos que marcaram o dia
-            </p>
-          </div>
-
-          <div class="ranking-item">
-            <span class="numero">2</span>
-            <p>
-              Tecnologia e inteligência artificial: o que muda agora?
-            </p>
-          </div>
-
-          <div class="ranking-item">
-            <span class="numero">3</span>
-            <p>
-              As descobertas científicas que chamaram atenção
-            </p>
-          </div>
-
-          <div class="ranking-item">
-            <span class="numero">4</span>
-            <p>
-              Tendências que podem transformar o futuro
-            </p>
-          </div>
-
-          <div class="ranking-item">
-            <span class="numero">5</span>
-            <p>
-              O que está acontecendo ao redor do mundo
-            </p>
-          </div>
-
-        </div>
-
-        <div class="painel">
-
-          <h3>📌 Radar Global</h3>
-
-          <p>
-            Um espaço dedicado às principais notícias e tendências
-            de diferentes áreas.
-          </p>
-
-          <br>
-
-          <p>
-            🌎 Mundo<br>
-            💻 Tecnologia<br>
-            🔬 Ciência<br>
-            🏆 Esportes<br>
-            🎬 Entretenimento
-          </p>
-
-        </div>
-
-      </section>
-
-      <!-- NEWSLETTER -->
-      <section class="newsletter">
-
-        <h2>📩 Receba as principais notícias</h2>
-
-        <p>
-          Cadastre seu e-mail para acompanhar as novidades do Radar Global.
-        </p>
-
-        <form class="formulario" onsubmit="inscrever(event)">
-
-          <input
-            type="email"
-            id="email"
-            placeholder="Seu melhor e-mail"
-            required
-          >
-
-          <button type="submit">
-            Inscrever-se
-          </button>
-
-        </form>
-
-      </section>
-
-    </div>
-
-  </main>
-
-  <!-- RODAPÉ -->
-  <footer>
-
-    <div class="footer-container">
-
-      <div>
-        <h3>RADAR GLOBAL 🌎</h3>
-
-        <p>
-          Notícias, atualidades e informações sobre os principais
-          acontecimentos do mundo.
-        </p>
-      </div>
-
-      <div>
-        <h3>Categorias</h3>
-
-        <ul>
-          <li><a href="#mundo">Mundo</a></li>
-          <li><a href="#tecnologia">Tecnologia</a></li>
-          <li><a href="#ciencia">Ciência</a></li>
-          <li><a href="#esportes">Esportes</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3>Informações</h3>
-
-        <ul>
-          <li><a href="#">Sobre nós</a></li>
-          <li><a href="#">Contato</a></li>
-          <li><a href="#">Política de privacidade</a></li>
-          <li><a href="#">Termos de uso</a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="copyright">
-      © 2026 Radar Global — Todos os direitos reservados.
-    </div>
-
-  </footer>
-
-  <script>
-
-    // MENU MOBILE
-    function abrirMenu() {
-      const menu = document.getElementById("menu");
-      menu.classList.toggle("ativo");
-    }
-
-    // NEWSLETTER
-    function inscrever(event) {
-
-      event.preventDefault();
-
-      const email = document.getElementById("email").value;
-
-      if (email) {
-        alert(
-          "Obrigado! O e-mail " +
-          email +
-          " foi cadastrado com sucesso."
-        );
-
-        document.getElementById("email").value = "";
-      }
-    }
-
-    // FECHA O MENU AO CLICAR EM UM LINK
-    document.querySelectorAll("nav a").forEach(function(link) {
-
-      link.addEventListener("click", function() {
-
-        document
-          .getElementById("menu")
-          .classList.remove("ativo");
-
-      });
-
-    });
-
-  </script>
-
-</body>
-</html>
+          <article
+            class="card noticia
